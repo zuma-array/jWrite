@@ -153,7 +153,7 @@ int jwErrorPos( );
 // - used to insert "key":"value" pairs into an object
 //
 void jwObj_string( const char *key, const char *value );
-void jwObj_int( const char *key, int value );
+void jwObj_int( const char *key, long long value );
 void jwObj_double( const char *key, double value );
 void jwObj_bool( const char *key, int oneOrZero );
 void jwObj_null( const char *key );
@@ -164,7 +164,7 @@ void jwObj_array( const char *key );
 // - used to insert "value" elements into an array
 //
 void jwArr_string( const char *value );
-void jwArr_int( int value );
+void jwArr_int( long long value );
 void jwArr_double( double value );
 void jwArr_bool( int oneOrZero );
 void jwArr_null( );
@@ -190,14 +190,14 @@ void jwOpen( struct jWriteControl *jwc, char *buffer, unsigned int buflen, enum 
 int jwClose( struct jWriteControl *jwc );
 int jwErrorPos( struct jWriteControl *jwc );
 void jwObj_string( struct jWriteControl *jwc, const char *key, const char *value );
-void jwObj_int( struct jWriteControl *jwc, const char *key, int value );
+void jwObj_int( struct jWriteControl *jwc, const char *key, long long value );
 void jwObj_double( struct jWriteControl *jwc, const char *key, double value );
 void jwObj_bool( struct jWriteControl *jwc, const char *key, int oneOrZero );
 void jwObj_null( struct jWriteControl *jwc, const char *key );
 void jwObj_object( struct jWriteControl *jwc, const char *key );
 void jwObj_array( struct jWriteControl *jwc, const char *key );
 void jwArr_string( struct jWriteControl *jwc, const char *value );
-void jwArr_int( struct jWriteControl *jwc, int value );
+void jwArr_int( struct jWriteControl *jwc, long long value );
 void jwArr_double( struct jWriteControl *jwc, double value );
 void jwArr_bool( struct jWriteControl *jwc, int oneOrZero );
 void jwArr_null( struct jWriteControl *jwc );

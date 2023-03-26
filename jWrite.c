@@ -51,7 +51,7 @@ struct jWriteControl g_jWriteControl;			// global control struct
 void jwPutch( JWC_DECL char c );
 void jwPutstr( JWC_DECL const char *str );
 void jwPutraw( JWC_DECL const char *str );
-void modp_itoa10(int32_t value, char* str);
+void modp_itoa10(int64_t value, char* str);
 void modp_dtoa2(double value, char* str, int prec);
 void jwPretty( JWC_DECL0 );
 enum jwNodeType jwPop( JWC_DECL0 );
@@ -151,7 +151,7 @@ void jwObj_string( JWC_DECL const char *key, const char *value )
 		jwPutstr( JWC_PARAM value );
 }
 
-void jwObj_int( JWC_DECL const char *key, const int value )
+void jwObj_int( JWC_DECL const char *key, long long value )
 {
 	modp_itoa10( value, JWC(tmpbuf) );
 	jwObj_raw( JWC_PARAM key, JWC(tmpbuf) );
@@ -216,7 +216,7 @@ void jwArr_string( JWC_DECL const char *value )
 		jwPutstr( JWC_PARAM value );
 }
 
-void jwArr_int( JWC_DECL int value )
+void jwArr_int( JWC_DECL long long value )
 {
 	modp_itoa10( value, JWC(tmpbuf) );
 	jwArr_raw( JWC_PARAM JWC(tmpbuf) );
@@ -414,11 +414,11 @@ static void strreverse(char* begin, char* end)
  * \param[in] value
  * \param[out] buf the output buffer.  Should be 16 chars or more.
  */
-void modp_itoa10(int32_t value, char* str)
+void modp_itoa10(int64_t value, char* str)
 {
     char* wstr=str;
     // Take care of sign
-    unsigned int uvalue = (value < 0) ? -value : value;
+    uint64_t uvalue = (value < 0) ? -value : value;
     // Conversion. Number is reversed.
     do *wstr++ = (char)(48 + (uvalue % 10)); while(uvalue /= 10);
     if (value < 0) *wstr++ = '-';
